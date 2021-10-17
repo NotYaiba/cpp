@@ -1,9 +1,14 @@
 #include <iostream>
 // using std::string;
 using namespace std;
+
+class   AbstractFriends
+{
+    virtual void printClass() = 0;
+};
 class Friends
 {
-private:
+protected:
     string Name;
     int Age;
 
@@ -28,8 +33,19 @@ public:
     }
 };
 
+class CloseFriends: public Friends
+{
+public:
+    string FavM;
+    CloseFriends(string name, int age, string movie):Friends(name, age)
+    {
+        FavM = movie;
+    }
+};
+
 int main()
 {
-    Friends frd1("Yaiba", 21);
-    frd1.printClass();
+    CloseFriends   close("mohamed", 32, "fight club");
+    string name = close.getName();
+    cout << name << endl;
 }
