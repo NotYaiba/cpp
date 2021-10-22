@@ -6,7 +6,7 @@
 /*   By: melkarmi <melkarmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:34:52 by melkarmi          #+#    #+#             */
-/*   Updated: 2021/10/18 18:00:12 by melkarmi         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:34:55 by melkarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,27 @@ PhoneBook::PhoneBook()
 }
 void PhoneBook::search()
 {
+    int ind;
     showColumns();
+ 
     for (int i = 0; i <= this->index ; i++)
     {
         this->Contacts[i].row_contact(i);
     }
-    std::cout << "Enter index : " ;
+    if (this->index == 0)
+        std::cout << std::setw(30) << "------No Contacts-----"  << std::endl;
+    std::cout << "Enter index (Enter b to go back) : " ;
 
     std::cin>>this->input;
+    if (!this->input.compare("b"))
+        return ;
     if (valid_index(this->input) == 1)
     {
-        index = stoi(this->input);
-        print_contact(index);
+        ind = stoi(this->input);
+        print_contact(ind );
     }
     else
-        std::cout << "Not a Valid Index" << std::endl;
-    
+        std::cout << "Not a Valid Index" << std::endl; 
 }
 int PhoneBook::valid_index(std::string s)
 {
@@ -71,16 +76,18 @@ void PhoneBook::add(Contact con)
     int i;
 
     i = this->index;
-    std::cout <<"index is " << i << std::endl;
     if (this->index == 7)
     {
-        this->Contacts[0] = con;
+        this->Contacts[this->oldest] = con;
+        if (this->oldest == 7)
+            this->oldest = 0;
+        else
+            this->oldest++;
     }
     else
     {
         this->index++;
         this->Contacts[i + 1] = con;
     }
-    std::cout <<"afther index is " << this->index << std::endl;
-    
+     std::cout << "Your contact has been added." <<  std::endl;
 }

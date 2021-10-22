@@ -11,7 +11,7 @@ class Friends
 protected:
     string Name;
     int Age;
-
+    
 public:
     string getName()
     {
