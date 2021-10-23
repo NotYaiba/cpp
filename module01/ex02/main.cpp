@@ -6,7 +6,7 @@
 /*   By: melkarmi <melkarmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 16:26:22 by melkarmi          #+#    #+#             */
-/*   Updated: 2021/10/23 16:53:37 by melkarmi         ###   ########.fr       */
+/*   Updated: 2021/10/23 20:42:41 by melkarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ int main ()
     std::cout << "      string  by the ref     : "<< stringREF <<  std::endl;
 
     std::cout << "program exitng ! " <<  std::endl;
-    
+
 }
