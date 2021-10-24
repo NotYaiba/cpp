@@ -1,10 +1,8 @@
 SRCS = main.cpp \
-		Weapon.cpp\
-		HumanA.cpp\
-		HumanB.cpp\
 
 
-NAME = weapon
+
+NAME = replace
 
 all : $(NAME)
 
