@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaiba <yaiba@student.42.fr>                +#+  +:+       +#+        */
+/*   By: melkarmi <melkarmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 16:18:41 by melkarmi          #+#    #+#             */
-/*   Updated: 2021/10/25 11:14:17 by yaiba            ###   ########.fr       */
+/*   Updated: 2021/10/25 14:18:13 by melkarmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ int main (int ac, char *av[])
     std::string line;
     std::string ret;
     int start;
-    std::string str;
-    std::string s1 = "ss";
-    std::string s2 = "kk";
-    size_t indx;
 
+    std::string str;
+    std::string s1;;
+    std::string s2;
+    size_t indx;
+    std::cout << "start0" << std::endl;
     if (handle_errors(ac , av) == true)
         return (1);
     std::ifstream fs(av[1]);
@@ -50,34 +51,30 @@ int main (int ac, char *av[])
     std::ofstream MyFile(newfile_name);
     s1 = av[2];
     s2 = av[3];
-    while (std::getline(fs, line))  
-    {
-
-    
-        
+    std::cout << "start1" << std::endl;
+        std::string content( (std::istreambuf_iterator<char>(fs) ),
+                       (std::istreambuf_iterator<char>()    ) );
         str = "";
         start = 0;
-        size_t indx = line.find(s1, start);
+        indx = content.find(s1, start);
         if (indx >= std::string::npos)
-            str = line;  
+            str = content;  
         else
         {    
             while(indx != std::string::npos)
             {
-                ret = line.substr(start,  indx - start);
-                str = str + ret;
-                start = indx + s2.size();
-                str.insert(indx, s2);
-                indx = line.find(s1,indx+1);
 
+                ret = content.substr(start,  indx - start);
+                str = str + ret + s2;
+                start = indx + s1.size();
+                std::cout << indx << std::endl;
+                indx = content.find(s1,start);
             }
-            ret = line.substr(start,  line.size());
+            ret = content.substr(start,  content.size());
             str = str + ret;     
-
-        }   
-        str = str + "\n";
+        }
         MyFile << str;
         
-    }
+    // }
     MyFile.close();
 }
