@@ -15,8 +15,8 @@ public:
 
     Fixed(const Fixed &otherFixed);
 
-    void set_Fixed(int val);
-    int get_Fixed(void);
+    void set_Fixed(int val) ;
+    int get_Fixed(void) const;
     Fixed& operator=(Fixed other);
     bool operator>(Fixed other);
     bool operator<(Fixed other);
@@ -27,7 +27,14 @@ public:
 
     Fixed operator+(Fixed const &other);
     Fixed operator-(Fixed const &other);
+    Fixed operator*(Fixed const &other);
+    Fixed operator/(Fixed const &other);
 
+Fixed&  operator++();
+Fixed   operator++(int);
+
+Fixed&  operator--();
+Fixed   operator--(int);
 	float toFloat(void) const;
 	int toInt(void) const;
 
